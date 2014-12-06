@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="ja" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>gurunavi api test</title>
+    <style>
+    html,
+    body {
+        font-family: "游ゴシック体", "Yu Gothic", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", meiryo;
+    }
+    </style>
+</head>
+
+<body>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+
+    (function($){
+
+    var params = {
+        keyid: '$key$',
+        area: 'AREA110',
+        pref: 'PREF13',
+        sort: 1,
+        format: 'json'
+    }
+    $.getJSON('http://api.gnavi.co.jp/ver1/RestSearchAPI/?callback=?',params, function(callback){
+
+        $('<h1>該当件数：' + callback.total_hit_count + '</h1>').appendTo('body');
+
+        var x = [];
+
+        for(i in callback.rest) {
+            x.push('<h2><a href="' + callback.rest[i].url + '">' + callback.rest[i].name+  '</a></h2>');
+        }
+        $(x.join('')).appendTo('body');
+
+    });
+
+    })(jQuery);
+
+</script>
+</body>
+
+</html>
