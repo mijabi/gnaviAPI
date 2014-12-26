@@ -10,14 +10,12 @@
         font-family: "游ゴシック体", "Yu Gothic", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", meiryo;
     }
     </style>
-<!--
-	<link rel="stylesheet" href="css/b.min.css" />
--->
 </head>
 
 <body>
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
+
     (function($){
 
     var params = {
@@ -28,25 +26,20 @@
         format: 'json'
     }
     $.getJSON('http://api.gnavi.co.jp/ver1/RestSearchAPI/?callback=?',params, function(callback){
+
         $('<h1>該当件数：' + callback.total_hit_count + '</h1>').appendTo('body');
+
         var x = [];
-/*        for(i in callback) {
-            x.push(i + ' : ' + callback[i] + '¥n');
-        }*/
 
         for(i in callback.rest) {
-//            x.push(i + ' : ' + callback.rest[i] + '¥n');
             x.push('<h2><a href="' + callback.rest[i].url + '">' + callback.rest[i].name+  '</a></h2>');
         }
         $(x.join('')).appendTo('body');
-        /*
-0 : [object Object]¥n1 : [object Object]¥n2 : [object Object]¥n3 : [object Object]¥n4 : [object Object]¥n5 : [object Object]¥n6 : [object Object]¥n7 : [object Object]¥n8 : [object Object]¥n9 : [object Object]¥n
 
-total_hit_count : 91173¥nhit_per_page : 10¥npage_offset : 1¥nrest : [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]¥n
-        */
     });
 
     })(jQuery);
+
 </script>
 </body>
 
